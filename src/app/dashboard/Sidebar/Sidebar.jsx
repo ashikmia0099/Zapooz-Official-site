@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { FaHome, FaUsers, FaNetworkWired, FaNewspaper, FaProjectDiagram, FaWpforms, FaList } from "react-icons/fa";
+import { FaHome, FaUsers, FaNetworkWired, FaNewspaper, FaProjectDiagram, FaWpforms, FaList, FaRegListAlt } from "react-icons/fa";
 import { MdBroadcastOnHome, MdMedicalServices, MdOutlineMiscellaneousServices, MdMiscellaneousServices, MdCategory } from "react-icons/md";
 import { GiLifeBar, GiNewspaper, GiChoice } from "react-icons/gi";
 import { VscServerProcess } from "react-icons/vsc";
@@ -42,7 +42,7 @@ function Sidebar() {
     <IoIosArrowDown className={`text-2xl transition-transform ${open ? "rotate-180" : "rotate-0"}`} />;
 
   return (
-    <div className="bg-[#191919] h-full border-r">
+    <div className="bg-[#191919] h-full ">
       <div className="max-w-[1596px] mx-auto ">
         {/* Home */}
         <li className={`${menuItemClass(isActive("/"))} flex-col gap-3 py-2  px-5`}>
@@ -187,6 +187,10 @@ function Sidebar() {
           {blogsDropdown && (
             <ul className=" mt-2 border-l border-gray-500 pl-4">
               <li className={`${menuItemClass(isActive('/dashboard/DashboardBlogs/AllBlogs'))} xl:text-lg lg:text-[16px]`}>
+                <span className="text-2xl"><FaRegListAlt /></span>
+                <Link href="/dashboard/DashboardBlogs/AllCategory">All Category</Link>
+              </li>
+              <li className={`${menuItemClass(isActive('/dashboard/DashboardBlogs/AllBlogs'))} xl:text-lg lg:text-[16px]`}>
                 <span className="text-2xl"><FaList /></span>
                 <Link href="/dashboard/DashboardBlogs/AllBlogs">All Blogs</Link>
               </li>
@@ -197,7 +201,7 @@ function Sidebar() {
               </li>
 
               <li className={`${menuItemClass(isActive('/dashboard/DashboardBlogs/BlogPostForm'))} xl:text-lg lg:text-[16px]`}>
-                <span className="text-2xl"><FaFileWaveform /></span>
+                <span className="text-2xl"><FaWpforms /></span>
                 <Link href="/dashboard/DashboardBlogs/BlogPostForm">Blog Post Form</Link>
               </li>
               <li className={`${menuItemClass(isActive('/dashboard/DashboardBlogs/EditBlog'))} xl:text-lg lg:text-[16px]`}>

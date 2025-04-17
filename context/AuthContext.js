@@ -16,9 +16,12 @@ const provider = new GoogleAuthProvider();
 
     const [user, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [blogallcategory, setblogallcategory] = useState([])
+    const [blogallcategory, setblogallcategory] = useState([]);
+    const [allblogs, setblogs] = useState([])
 
 
+
+    // fetch all blog category
 
     useEffect(()=>{
 
@@ -31,6 +34,25 @@ const provider = new GoogleAuthProvider();
 
 
     },[])
+
+
+     // fetch all blog post
+
+     useEffect(()=>{
+
+        fetch("http://localhost:3000/api/blogsapi/BlogPostapi")
+        .then(res => res.json())
+        .then(data =>{
+            setblogs(data)
+            
+        })
+
+
+    },[])
+
+
+
+
 
 
 
@@ -87,6 +109,7 @@ const provider = new GoogleAuthProvider();
         UserProfileUpdate,
         blogallcategory, 
         setblogallcategory,
+        allblogs, setblogs
 
     }
 

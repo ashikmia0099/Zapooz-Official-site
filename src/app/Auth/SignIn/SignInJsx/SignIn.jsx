@@ -39,13 +39,15 @@ function SignIn() {
                 console.log(signInuser)
 
 
-                // check email verifyed
+               
 
-                if (signInuser.emailVerified) {
-                   
-                    router.push("/dashboard"); // redirect to home
-
-                } 
+                if (!signInuser.emailVerified) {
+                    toast.warning("Please verify your email before logging in.");
+                    return; 
+                }
+    
+                // ✅ Email is verified, proceed to dashboard
+                router.push("/dashboard");
 
 
 

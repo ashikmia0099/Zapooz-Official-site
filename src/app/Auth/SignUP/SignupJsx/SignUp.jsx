@@ -18,6 +18,96 @@ function SignUp() {
     const [phone, setPhone] = useState('');
     const [countryName, setCountryName] = useState('');
 
+    // const handleSignUp = (e) => {
+    //     e.preventDefault();
+
+    //     const form = new FormData(e.target);
+    //     const name = form.get('name');
+    //     const email = form.get('email');
+    //     const password = form.get('password');
+    //     const whatsapp = phone;
+
+    //     console.log("Name:", name);
+    //     console.log("Email:", email);
+    //     console.log("Phone Number:", whatsapp);
+    //     console.log("Country:", countryName);
+    //     console.log("Password:", password);
+
+    //     if (!phone || phone.length < 6) {
+    //         toast.error("Please enter a valid phone number.");
+    //         return;
+    //     }
+
+    //     handleSignUpWithEamil(email, password)
+    //         .then((userCredential) => {
+    //             const signupuser = userCredential.user;
+    //             console.log(signupuser);
+
+
+    //             // Update display name
+    //             UserProfileUpdate({ displayName: name });
+
+    //             // Send email verification
+    //             sendEmailVerification(signupuser)
+    //                 .then(() => {
+    //                     toast.success('Verification email sent. Please check your inbox.');
+
+    //                 })
+    //                 .catch((error) => {
+    //                     toast.error("Error sending email verification. Check email format.");
+    //                     console.error(error);
+    //                 });
+
+    //             setUsers(signupuser);
+
+    //             handleSignOut();
+
+
+
+    //             // user all data store in database
+
+    //             const UserInfo = {
+    //                 Name: name,
+    //                 Email: email,
+    //                 Phone: whatsapp,
+    //                 Country:countryName
+
+    //             }
+
+    //             fetch("http://localhost:3000/api/signinsignup/Signupapi", {
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type": "application/json"
+    //                 },
+    //                 body: JSON.stringify(UserInfo)
+    //             })
+    //                 .then(res => res.json())
+    //                 .then(data => {
+    //                     console.log("User info stored in DB:", data);
+    //                 })
+    //                 .catch(err => {
+    //                     console.error("Error storing user info:", err);
+    //                 });
+
+
+
+
+    //         })
+    //         .catch((error) => {
+    //             console.log("Error", error);
+    //             toast.error(error.message);
+    //         });
+    // }
+
+
+
+
+    // phone number and country set
+
+
+
+
+
     const handleSignUp = (e) => {
         e.preventDefault();
 
@@ -50,26 +140,19 @@ function SignUp() {
                 sendEmailVerification(signupuser)
                     .then(() => {
                         toast.success('Verification email sent. Please check your inbox.');
-                        handleSignOut();
                     })
                     .catch((error) => {
                         toast.error("Error sending email verification. Check email format.");
                         console.error(error);
                     });
 
-                setUsers(signupuser);
-
-
-
                 // user all data store in database
-
                 const UserInfo = {
                     Name: name,
                     Email: email,
                     Phone: whatsapp,
-                    Country:countryName
-
-                }
+                    Country: countryName
+                };
 
                 fetch("http://localhost:3000/api/signinsignup/Signupapi", {
                     method: "POST",
@@ -81,25 +164,32 @@ function SignUp() {
                     .then(res => res.json())
                     .then(data => {
                         console.log("User info stored in DB:", data);
+
+                        // 👇 Only update state and sign out AFTER saving user data
+                        setUsers(null); // Clear user from context
+                        handleSignOut(); // Now sign out
+                        
                     })
                     .catch(err => {
                         console.error("Error storing user info:", err);
+                        toast.error("User saved failed");
                     });
-
-
-
-
             })
             .catch((error) => {
                 console.log("Error", error);
                 toast.error(error.message);
             });
+
     }
 
 
 
 
     // phone number and country set
+
+
+
+
 
     const handleCountryPhoneNumber = (value, countryData) => {
         setPhone(value);

@@ -10,7 +10,7 @@ function BlogCategroy() {
         const CategoryName = form.get('CategoryName');
 
         const postedData = {
-            Blog_Category: CategoryName
+            Category_Name: CategoryName
         };
 
         try {
