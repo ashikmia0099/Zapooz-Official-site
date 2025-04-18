@@ -53,9 +53,6 @@ const provider = new GoogleAuthProvider();
 
 
 
-
-
-
     // create user with email and password
 
     const handleSignUpWithEamil = (email,password) =>{
@@ -119,15 +116,24 @@ const provider = new GoogleAuthProvider();
     useEffect (() => {
 
        const unsubscribe = onAuthStateChanged(auth, (currentuser) =>{
-            if(currentuser){
+            if(currentuser && currentuser.emailVerified){
                 setUsers(currentuser);
-                setLoading(false)
+                
+            }else{
+                setUsers(null);
             }
+            setLoading(false)
         }) 
         return () => unsubscribe()
 
 
     },[])
+
+
+    
+      
+
+
 
     return (
         <AuthContext.Provider value={userInfo}>

@@ -16,7 +16,7 @@ function SignIn() {
 
 
     const router = useRouter();
-    const { handleSignInWithEmail, user, setUser } = useAuth()
+    const { handleSignInWithEmail, user, setUser, handleSignOut } = useAuth()
 
 
     const handleSignIn = (e) => {
@@ -43,6 +43,7 @@ function SignIn() {
 
                 if (!signInuser.emailVerified) {
                     toast.warning("Please verify your email before logging in.");
+                    handleSignOut()
                     return; 
                 }
     
