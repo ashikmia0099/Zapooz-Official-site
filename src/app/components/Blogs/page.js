@@ -1,12 +1,16 @@
-import React from 'react'
-import TopSection from './BlogsJsx/TopSection/TopSection'
+
+"use client"; 
+
+import React from 'react';
+import TopSection from './BlogsJsx/TopSection/TopSection';
+import WithAuth from '../../../../lib/WithAuth';
 
 function Page() {
   return (
     <div>
-      <TopSection></TopSection>
+      <TopSection />
     </div>
-  )
+  );
 }
 
-export default Page
+export default WithAuth(Page); 

@@ -8,7 +8,7 @@ function Loading() {
 
 
     if (setLoading) {
-        return <div>
+        return <div className='flex items-center justify-center mx-auto'>
             <span className="loading loading-bars loading-xs"></span>
             <span className="loading loading-bars loading-sm"></span>
             <span className="loading loading-bars loading-md"></span>
